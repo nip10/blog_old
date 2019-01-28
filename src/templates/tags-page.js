@@ -7,7 +7,7 @@ import { slugify } from '../util/utilityFunctions';
 const tagsPage = ({ pageContext }) => {
   const { tags, tagPostCounts } = pageContext;
   return (
-    <Layout pageTitle="All tags">
+    <Layout>
       <SEO title="All tags" keywords={['tags', 'topics']} />
       <ul>
         {tags.map(tag => (
