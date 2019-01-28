@@ -7,17 +7,16 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
 
-    this.toggle = this.toggle.bind(this);
     this.state = {
       isOpen: false,
     };
   }
 
-  toggle() {
+  toggle = () => {
     this.setState({
       isOpen: !this.state.isOpen,
     });
-  }
+  };
 
   render() {
     return (
@@ -29,13 +28,12 @@ class Header extends React.Component {
             <Collapse isOpen={this.state.isOpen} navbar>
               <Nav className="ml-auto" navbar>
                 <NavItem>
-                  <NavLink href="/team">Team</NavLink>
-                </NavItem>
-                <NavItem>
                   <NavLink href="/tags">Tags</NavLink>
                 </NavItem>
                 <NavItem>
-                  <NavLink href="/about">About</NavLink>
+                  <NavLink target="_blank" rel="noopener noreferrer" href="https://diogocardoso.me">
+                    About
+                  </NavLink>
                 </NavItem>
               </Nav>
             </Collapse>
@@ -51,7 +49,7 @@ Header.propTypes = {
 };
 
 Header.defaultProps = {
-  siteTitle: ``,
+  siteTitle: '',
 };
 
 export default Header;
