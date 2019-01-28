@@ -1,12 +1,12 @@
-import React from 'react'
-import Layout from '../components/layout'
-import Post from '../components/Post'
-import { graphql } from 'gatsby'
-import PaginationLinks from '../components/PaginationLinks'
+import React from 'react';
+import { graphql } from 'gatsby';
+import Layout from '../components/layout';
+import Post from '../components/Post';
+import PaginationLinks from '../components/PaginationLinks';
 
 const postList = props => {
-  const posts = props.data.allMarkdownRemark.edges
-  const { currentPage, numberOfPages } = props.pageContext
+  const posts = props.data.allMarkdownRemark.edges;
+  const { currentPage, numberOfPages } = props.pageContext;
 
   return (
     <Layout pageTitle={`Page: ${currentPage}`}>
@@ -22,21 +22,14 @@ const postList = props => {
           fluid={node.frontmatter.image.childImageSharp.fluid}
         />
       ))}
-      <PaginationLinks
-        currentPage={currentPage}
-        numberOfPages={numberOfPages}
-      />
+      <PaginationLinks currentPage={currentPage} numberOfPages={numberOfPages} />
     </Layout>
-  )
-}
+  );
+};
 
 export const postListQuery = graphql`
   query postListQuery($skip: Int!, $limit: Int!) {
-    allMarkdownRemark(
-      sort: { fields: [frontmatter___date], order: DESC }
-      limit: $limit
-      skip: $skip
-    ) {
+    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }, limit: $limit, skip: $skip) {
       edges {
         node {
           id
@@ -61,6 +54,6 @@ export const postListQuery = graphql`
       }
     }
   }
-`
+`;
 
-export default postList
+export default postList;

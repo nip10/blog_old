@@ -1,32 +1,28 @@
-import React from 'react'
-import Layout from '../components/layout'
-import { graphql, Link } from 'gatsby'
-import SEO from '../components/seo'
-import { Badge, Card, CardBody, CardSubtitle } from 'reactstrap'
-import Img from 'gatsby-image'
-import { slugify } from '../util/utilityFunctions'
-import authors from '../util/authors'
-import { DiscussionEmbed } from 'disqus-react'
+import React from 'react';
+import { graphql, Link } from 'gatsby';
+import { Badge, Card, CardBody, CardSubtitle } from 'reactstrap';
+import Img from 'gatsby-image';
+import { DiscussionEmbed } from 'disqus-react';
+import Layout from '../components/layout';
+import SEO from '../components/seo';
+import { slugify } from '../util/utilityFunctions';
+import authors from '../util/authors';
 
 const SinglePost = ({ data, pageContext, location }) => {
-  const post = data.markdownRemark.frontmatter
-  const author = authors.find(x => x.name === post.author)
+  const post = data.markdownRemark.frontmatter;
+  const author = authors.find(x => x.name === post.author);
 
-  const baseUrl = 'https://gatsbytutorial.co.uk/'
+  const baseUrl = 'https://gatsbytutorial.co.uk/';
 
-  const disqusShortname = 'https-gatsbytutorial-co-uk'
+  const disqusShortname = 'https-gatsbytutorial-co-uk';
   const disqusConfig = {
     identifier: data.markdownRemark.id,
     title: post.title,
     url: baseUrl + pageContext.slug,
-  }
+  };
 
   return (
-    <Layout
-      pageTitle={post.title}
-      postAuthor={author}
-      authorImageFluid={data.file.childImageSharp.fluid}
-    >
+    <Layout pageTitle={post.title} postAuthor={author} authorImageFluid={data.file.childImageSharp.fluid}>
       <SEO
         author={post.author}
         title={post.title}
@@ -36,14 +32,10 @@ const SinglePost = ({ data, pageContext, location }) => {
         pathname={location.pathname}
       />
       <Card>
-        <Img
-          className="card-image-top"
-          fluid={post.image.childImageSharp.fluid}
-        />
+        <Img className="card-image-top" fluid={post.image.childImageSharp.fluid} />
         <CardBody>
           <CardSubtitle>
-            <span className="text-info">{post.date}</span> by{' '}
-            <span className="text-info">{post.author}</span>
+            <span className="text-info">{post.date}</span> by <span className="text-info">{post.author}</span>
           </CardSubtitle>
           <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }} />
           <ul className="post-tags">
@@ -62,11 +54,7 @@ const SinglePost = ({ data, pageContext, location }) => {
         <ul>
           <li>
             <a
-              href={
-                'https://www.facebook.com/sharer/sharer.php?u=' +
-                baseUrl +
-                pageContext.slug
-              }
+              href={`https://www.facebook.com/sharer/sharer.php?u=${baseUrl}${pageContext.slug}`}
               className="facebook"
               target="_blank"
               rel="noopener noreferrer"
@@ -76,15 +64,7 @@ const SinglePost = ({ data, pageContext, location }) => {
           </li>
           <li>
             <a
-              href={
-                'https://twitter.com/share?url=' +
-                baseUrl +
-                pageContext.slug +
-                '&text=' +
-                post.title +
-                '&via' +
-                'twitterHandle'
-              }
+              href={`https://twitter.com/share?url=${baseUrl}${pageContext.slug}&text=${post.title}&viatwitterHandle`}
               className="twitter"
               target="_blank"
               rel="noopener noreferrer"
@@ -94,11 +74,7 @@ const SinglePost = ({ data, pageContext, location }) => {
           </li>
           <li>
             <a
-              href={
-                'https://plus.google.com/share?url=' +
-                baseUrl +
-                pageContext.slug
-              }
+              href={`https://plus.google.com/share?url=${baseUrl}${pageContext.slug}`}
               className="google"
               target="_blank"
               rel="noopener noreferrer"
@@ -108,11 +84,7 @@ const SinglePost = ({ data, pageContext, location }) => {
           </li>
           <li>
             <a
-              href={
-                'https://www.linkedin.com/shareArticle?url=' +
-                baseUrl +
-                pageContext.slug
-              }
+              href={`https://www.linkedin.com/shareArticle?url=${baseUrl}${pageContext.slug}`}
               className="linkedin"
               target="_blank"
               rel="noopener noreferrer"
@@ -124,8 +96,8 @@ const SinglePost = ({ data, pageContext, location }) => {
       </div>
       <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
     </Layout>
-  )
-}
+  );
+};
 
 export const postQuery = graphql`
   query blogPostBySlug($slug: String!, $imageUrl: String!) {
@@ -154,6 +126,6 @@ export const postQuery = graphql`
       }
     }
   }
-`
+`;
 
-export default SinglePost
+export default SinglePost;

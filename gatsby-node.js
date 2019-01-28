@@ -1,22 +1,23 @@
-const path = require('path')
-const { slugify } = require('./src/util/utilityFunctions')
-const authors = require('./src/util/authors')
-const _ = require('lodash')
+/* eslint-disable consistent-return */
+const path = require('path');
+const _ = require('lodash');
+const { slugify } = require('./src/util/utilityFunctions');
+const authors = require('./src/util/authors');
 
 exports.onCreateNode = ({ node, actions }) => {
-  const { createNodeField } = actions
+  const { createNodeField } = actions;
   if (node.internal.type === 'MarkdownRemark') {
-    const slugFromTitle = slugify(node.frontmatter.title)
+    const slugFromTitle = slugify(node.frontmatter.title);
     createNodeField({
       node,
       name: 'slug',
       value: slugFromTitle,
-    })
+    });
   }
-}
+};
 
 exports.createPages = async ({ actions, graphql }) => {
-  const { createPage } = actions
+  const { createPage } = actions;
 
   // Page templates
   const templates = {
@@ -25,7 +26,7 @@ exports.createPages = async ({ actions, graphql }) => {
     tag: path.resolve('src/templates/tag-posts.js'),
     tagsPage: path.resolve('src/templates/tags-page.js'),
     authorPosts: path.resolve('src/templates/author-posts.js'),
-  }
+  };
 
   const res = await graphql(`
     {
@@ -43,12 +44,12 @@ exports.createPages = async ({ actions, graphql }) => {
         }
       }
     }
-  `)
+  `);
 
-  if (res.errors) return Promise.reject(res.errors)
+  if (res.errors) return Promise.reject(res.errors);
 
   // Extracting all posts from res
-  const posts = res.data.allMarkdownRemark.edges
+  const posts = res.data.allMarkdownRemark.edges;
 
   // Create single post pages
   posts.forEach(({ node }) => {
@@ -59,22 +60,21 @@ exports.createPages = async ({ actions, graphql }) => {
         // Passing slug for template to use to fetch the post
         slug: node.fields.slug,
         // Find author imageUrl from author array and pass it to template
-        imageUrl: authors.find(x => x.name === node.frontmatter.author)
-          .imageUrl,
+        imageUrl: authors.find(x => x.name === node.frontmatter.author).imageUrl,
       },
-    })
-  })
+    });
+  });
 
   // Create posts pagination pages
-  const postsPerPage = 2
-  const numberOfPages = Math.ceil(posts.length / postsPerPage)
+  const postsPerPage = 2;
+  const numberOfPages = Math.ceil(posts.length / postsPerPage);
 
-  Array.from({ length: numberOfPages }).forEach((_, index) => {
-    const isFirstPage = index === 0
-    const currentPage = index + 1
+  Array.from({ length: numberOfPages }).forEach((val, index) => {
+    const isFirstPage = index === 0;
+    const currentPage = index + 1;
 
     // Skip first page because of index.js
-    if (isFirstPage) return
+    if (isFirstPage) return;
 
     createPage({
       path: `/page/${currentPage}`,
@@ -82,27 +82,27 @@ exports.createPages = async ({ actions, graphql }) => {
       context: {
         limit: postsPerPage,
         skip: index * postsPerPage,
-        numberOfPages: numberOfPages,
-        currentPage: currentPage,
+        numberOfPages,
+        currentPage,
       },
-    })
-  })
+    });
+  });
   // Get all tags
-  let tags = []
+  let tags = [];
   _.each(posts, edge => {
     if (_.get(edge, 'node.frontmatter.tags')) {
-      tags = tags.concat(edge.node.frontmatter.tags)
+      tags = tags.concat(edge.node.frontmatter.tags);
     }
-  })
+  });
 
-  let tagPostCounts = {} // { tutorial: 2, design: 1}
+  const tagPostCounts = {}; // { tutorial: 2, design: 1}
   tags.forEach(tag => {
     // Or 0 cause it might not exist yet
-    tagPostCounts[tag] = (tagPostCounts[tag] || 0) + 1
-  })
+    tagPostCounts[tag] = (tagPostCounts[tag] || 0) + 1;
+  });
 
   // Remove duplicates
-  tags = _.uniq(tags)
+  tags = _.uniq(tags);
 
   // Tags page (all tags)
   createPage({
@@ -112,7 +112,7 @@ exports.createPages = async ({ actions, graphql }) => {
       tags,
       tagPostCounts,
     },
-  })
+  });
 
   // Tag posts pages
   tags.forEach(tag => {
@@ -122,8 +122,8 @@ exports.createPages = async ({ actions, graphql }) => {
       context: {
         tag,
       },
-    })
-  })
+    });
+  });
 
   // Create author posts pages
   authors.forEach(author => {
@@ -134,6 +134,6 @@ exports.createPages = async ({ actions, graphql }) => {
         authorName: author.name,
         imageUrl: author.imageUrl,
       },
-    })
-  })
-}
+    });
+  });
+};

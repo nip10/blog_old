@@ -1,13 +1,12 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { StaticQuery, graphql } from 'gatsby'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { StaticQuery, graphql } from 'gatsby';
+import { Row, Col } from 'reactstrap';
 
-import Header from './header'
-import Footer from './Footer'
-import Sidebar from './Sidebar'
-import '../styles/index.scss'
-
-import { Row, Col } from 'reactstrap'
+import Header from './header';
+import Footer from './Footer';
+import Sidebar from './Sidebar';
+import '../styles/index.scss';
 
 const Layout = ({ authorImageFluid, children, pageTitle, postAuthor }) => (
   <StaticQuery
@@ -42,10 +41,10 @@ const Layout = ({ authorImageFluid, children, pageTitle, postAuthor }) => (
       </>
     )}
   />
-)
+);
 
 Layout.propTypes = {
   children: PropTypes.node.isRequired,
-}
+};
 
-export default Layout
+export default Layout;

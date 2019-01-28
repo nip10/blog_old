@@ -1,11 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: `Code Blog`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: 'Diogo Cardoso | Blog',
+    description: 'Random stuff. Mostly programming and electronics.',
+    author: 'Diogo Cardoso',
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
+    'gatsby-plugin-react-helmet',
     'gatsby-plugin-sass',
     'gatsby-plugin-catch-links',
     'gatsby-transformer-remark',
@@ -41,4 +41,4 @@ module.exports = {
     // To learn more, visit: https://gatsby.app/offline
     // 'gatsby-plugin-offline',
   ],
-}
+};
