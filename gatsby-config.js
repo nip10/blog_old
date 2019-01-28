@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    title: 'Diogo Cardoso | Blog',
+    title: 'Diogo Cardoso - Blog',
     description: 'Random stuff. Mostly programming and electronics.',
     author: 'Diogo Cardoso',
   },
