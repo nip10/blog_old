@@ -1,13 +1,26 @@
 language: node_js
 node_js:
-  - 8.14.0
-install: yarn
-script: gatsby build
+  - 8
+sudo: false
+cache:
+  npm: true
+  directories:
+    - node_modules
+install: npm install
+script:
+  - npm run lint
+  - npm run build
+# before_deploy:
+#   - pip install --user awscli
 deploy:
   provider: s3
-  access_key_id: $AWS_KEY
-  secret_access_key: $AWS_SECRET
-  bucket: 'gatsby-test-deploy'
+  access_key_id:
+    secure: "oDAFRbAOZdxpndg+4l0LZ5KUCZrniFO8/oKKXV0wWs2qXygNiC2uHQduWKA90B7jQNJ2JZSR3CbXVTw6B5eB3U8ecDWV0z7OYCgSTDoEF4kBkcBydD7NF2zp8NO8/A9J22nKEpgoNB2alM80AhLcyublQpvcTlGT3trYIvTq9ZgopnUFIgPVNgQbGam2L/eHfBtt1wViwsjwAWiiO6hI9HbGAM+ntWsBuvmYk3oz+/YSRfBmi6p8EfniBihslXzdXwHcjKaYddlOryX4C+GSlUzVlNd+9OYVZOuBa/rn0aY0cFHZc1pJpd+y0Q8/5ndnurnPSEocAv87/SVR8cG4lMZOjDwMViMEQYiTbgrgH7XC43eDhlRJHov+ViZDT5I0T5L7yaSdrsg1qbrPdGn0gxKJcn6GM8jiBl0PmJz0KpD8S5WK5Zei8qPChxb9iC6ROvFbmAe835UPXM1Ct82FCF+XqpQrAacQoutEHc/9APhvSkDya0SlnBg4+UGpXEzP0ciAdSr+LG6Y/hj/EvR9kQ0zoyTMlIGlW77253WG4iSM4sZzOSViZxBxhOUdcR1DDIFlRaQcVzFibEtAannGTk/USkZiMTRLxYgRodQRE8pMyzE9gY+tbu+k+8BLkcCdm2ABshGe7186y3G6ucJM1D6mS1pIxxGafqF65qR+ItY="
+  secret_access_key:
+    secure: "NMdYZ9yWNkMC45jec98GZxDR33e0I2uiaFsd5QLofzqU0vAEXl7ia8wgVafmo3yP8NzlB5c4zZIHeDMi7SSclO9/kgr+8MQqfovA64K1A0vq/Btnn+yKfJN2FbtLQF6Iq7tPhUUKNT3ZWx6iXJoWDugO1s8dKo4kefxzdR7L2ggVINpSMPwy9IyaGcRTdD/CcHGQlqzU8T+U3XV9Nfzqf89fdTfkmZz4jgjNFZCuUJSglrvv9QliLuAH61MNT+ZzMipiOnRLVlFmcbTOW+P09AmSoFFOXWrJ4z46aUrhsWLpsGv58JhCHQgF8rSpvuY1oARjYr1acc3nfKJsBpUE3c6lrlyLJ3Y9ouHYhvEVwweUk4CerSuDKhumLy83rT9PcOA5Zjy/BqCbUgI+v4Y92KeHXycEsnv/SNa464/UtEhfRFSZmoNEk0H6J3BiWpeWOOGmFILEna3X9lp18KTW295UJvXoJVgwtC64j5XM9/0ihZdjnVnyDkh4jnywzvFSyB5hg8Nl7ImEihv8Tsc2nDOxyuh8T8jKKOuaZER0OEDzmUiGFg1uP4CoYBzDQ2cE9BinO/9QdGx2/IjXZPgda0j9NRAd7K2+775MbJI2frWZq4nygILpMp8WPUUJZYyhABbjPop6L3VbiZYniH3meMMnLSjJWCmifXJjeJ0+Oyk="
+  bucket: blog.diogocardoso.me
   skip_cleanup: true
-  acl: public_read
+  region: eu-west-2
   local_dir: public
+notifications:
+  email: false
