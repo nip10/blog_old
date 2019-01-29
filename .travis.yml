@@ -10,8 +10,8 @@ install: npm install
 script:
   - npm run lint
   - npm run build
-# before_deploy:
-#   - pip install --user awscli
+before_deploy:
+  - pip install --user awscli
 deploy:
   provider: s3
   access_key_id:
