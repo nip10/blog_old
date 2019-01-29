@@ -3,10 +3,10 @@ module.exports = {
   plugins: ["prettier", "react"],
   rules: {
     "semi": "error",
-    "linebreak-style": [
-      "error",
-      "windows"
-    ],
+    // "linebreak-style": [
+    //   "error",
+    //   "windows"
+    // ],
     "arrow-spacing": ["error", { before: true, after: true }], // recommended
     indent: ["error", 2],
     "no-use-before-define": "off",
