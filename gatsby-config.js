@@ -3,6 +3,7 @@ module.exports = {
     title: 'Diogo Cardoso - Blog',
     description: 'Random stuff. Mostly programming and electronics.',
     author: 'Diogo Cardoso',
+    siteUrl: 'https://blog.diogocardoso.me',
   },
   plugins: [
     'gatsby-plugin-react-helmet',
@@ -61,6 +62,7 @@ module.exports = {
         // cookieDomain: "example.com",
       },
     },
+    'gatsby-plugin-sitemap',
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.app/offline
     'gatsby-plugin-offline',
