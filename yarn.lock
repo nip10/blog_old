@@ -730,6 +730,13 @@
   dependencies:
     regenerator-runtime "^0.13.2"
 
+"@babel/runtime@^7.7.6":
+  version "7.7.6"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.7.6.tgz#d18c511121aff1b4f2cd1d452f1bac9601dd830f"
+  integrity sha512-BWAJxpNVa0QlE5gZdWjSxXtemZyZ9RmrmVozxt3NUXeZhVIJ5ANyqmMc0JDrivBZyxUuQvFxlvH4OWWOogGfUw==
+  dependencies:
+    regenerator-runtime "^0.13.2"
+
 "@babel/template@^7.1.0", "@babel/template@^7.4.4":
   version "7.4.4"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.4.4.tgz#f4b88d1225689a08f5bc3a17483545be9e4ed237"
@@ -5359,13 +5366,13 @@ gatsby-plugin-react-helmet@^3.1.4:
   dependencies:
     "@babel/runtime" "^7.0.0"
 
-gatsby-plugin-sass@^2.1.10:
-  version "2.1.10"
-  resolved "https://registry.yarnpkg.com/gatsby-plugin-sass/-/gatsby-plugin-sass-2.1.10.tgz#3257a01351cd7e18248c73c1683c4598359a10ef"
-  integrity sha512-5uVN0PXsmqfWlBBkko/RscI7EB+Be7Y7tirN+PX4WzbdziELGzwjph8GdS3j0dQbGbB9UmhCBWhtSGEVxP6loQ==
+gatsby-plugin-sass@^2.1.24:
+  version "2.1.26"
+  resolved "https://registry.yarnpkg.com/gatsby-plugin-sass/-/gatsby-plugin-sass-2.1.26.tgz#46b56a1c0a7b424aa42d8f740eb293ba00b64f67"
+  integrity sha512-zunowxeYrtPIiMkgIHZLTNvwzSLJmBBSH+2EQEtyKgdOlB2tWcXp+/ifoWaYRCMykMGsTvvyn4kNIyl5bslBDw==
   dependencies:
-    "@babel/runtime" "^7.0.0"
-    sass-loader "^7.0.1"
+    "@babel/runtime" "^7.7.6"
+    sass-loader "^7.3.1"
 
 gatsby-plugin-sharp@^2.2.13:
   version "2.2.13"
@@ -10744,7 +10751,7 @@ sass-graph@^2.2.4:
     scss-tokenizer "^0.2.3"
     yargs "^7.0.0"
 
-sass-loader@^7.0.1:
+sass-loader@^7.3.1:
   version "7.3.1"
   resolved "https://registry.yarnpkg.com/sass-loader/-/sass-loader-7.3.1.tgz#a5bf68a04bcea1c13ff842d747150f7ab7d0d23f"
   integrity sha512-tuU7+zm0pTCynKYHpdqaPpe+MMTQ76I9TPZ7i4/5dZsigE350shQWe5EZNl5dBidM49TPET75tNqRbcsUZWeNA==
